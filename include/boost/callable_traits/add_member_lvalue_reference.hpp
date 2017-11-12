@@ -34,25 +34,30 @@ struct add_member_lvalue_reference_t {
 template<typename T>
 using add_member_lvalue_reference_t = //see below
 //<-
+
+    detail::copy_cv_ref<
+
 #ifdef BOOST_CLBL_TRTS_DISABLE_ABOMINABLE_FUNCTIONS
 
-    detail::sfinae_try<
-        typename detail::traits<T>::add_member_lvalue_reference,
+        detail::sfinae_try<
+            typename detail::traits<detail::shallow_decay_except_func_ref<T>>::add_member_lvalue_reference,
 
-        detail::fail_when_same<typename detail::traits<T>::add_member_lvalue_reference,
-            detail::abominable_functions_not_supported_on_this_compiler,
-            this_compiler_doesnt_support_abominable_function_types>,
+            detail::fail_when_same<typename detail::traits<detail::shallow_decay_except_func_ref<T>>::add_member_lvalue_reference,
+                detail::abominable_functions_not_supported_on_this_compiler,
+                this_compiler_doesnt_support_abominable_function_types>,
 
-        detail::fail_if_invalid<
-            typename detail::traits<T>::add_member_lvalue_reference,
-            member_qualifiers_are_illegal_for_this_type>>;
+            detail::fail_if_invalid<
+                typename detail::traits<detail::shallow_decay_except_func_ref<T>>::add_member_lvalue_reference,
+                member_qualifiers_are_illegal_for_this_type>>,
 #else
 
-    detail::try_but_fail_if_invalid<
-        typename detail::traits<T>::add_member_lvalue_reference,
-        member_qualifiers_are_illegal_for_this_type>;
+        detail::try_but_fail_if_invalid<
+            typename detail::traits<detail::shallow_decay_except_func_ref<T>>::add_member_lvalue_reference,
+            member_qualifiers_are_illegal_for_this_type>,
 
 #endif // #ifdef BOOST_CLBL_TRTS_DISABLE_ABOMINABLE_FUNCTIONS
+        T>;
+
 #endif // #ifdef BOOST_CLBL_TRTS_DISABLE_REFERENCE_QUALIFIERS
 
 namespace detail {

@@ -41,9 +41,11 @@ namespace detail {
 template<typename T, typename R>
 using apply_return_t = //see below
 //<-
-    detail::try_but_fail_if_invalid<
-        typename detail::apply_return_helper<T, R>::type,
-        invalid_types_for_apply_return>;
+    detail::copy_cv_ref<
+        detail::try_but_fail_if_invalid<
+            typename detail::apply_return_helper<detail::shallow_decay<T>, R>::type,
+            invalid_types_for_apply_return>,
+        T>;
 
 namespace detail {
 

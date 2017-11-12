@@ -34,11 +34,11 @@ int main() {
     CT_ASSERT(is_substitution_failure_remove_varargs<decltype(lambda)&>::value);
     CT_ASSERT(is_substitution_failure_remove_varargs<int>::value);
     CT_ASSERT(is_substitution_failure_remove_varargs<int &>::value);
-    CT_ASSERT(is_substitution_failure_remove_varargs<int (* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_remove_varargs<int (foo::* &)()>::value);
-    CT_ASSERT(is_substitution_failure_remove_varargs<int (foo::* const)()>::value);
-    CT_ASSERT(is_substitution_failure_remove_varargs<int (foo::* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_remove_varargs<int (foo::* volatile)()>::value);
+    CT_ASSERT(!is_substitution_failure_remove_varargs<int (* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_remove_varargs<int (foo::* &)()>::value);
+    CT_ASSERT(!is_substitution_failure_remove_varargs<int (foo::* const)()>::value);
+    CT_ASSERT(!is_substitution_failure_remove_varargs<int (foo::* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_remove_varargs<int (foo::* volatile)()>::value);
     CT_ASSERT(is_substitution_failure_remove_varargs<void>::value);
     CT_ASSERT(is_substitution_failure_remove_varargs<void*>::value);
     CT_ASSERT(is_substitution_failure_remove_varargs<void(**)()>::value);

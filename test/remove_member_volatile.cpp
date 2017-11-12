@@ -29,16 +29,16 @@ int main() {
         using cvr = char(foo::*)(foo*, int) const volatile RREF;
 
         CT_ASSERT(std::is_same<f,   TRAIT(remove_member_volatile, f)>{});
-        CT_ASSERT(std::is_same<l,   TRAIT(remove_member_volatile, vl)>{});
+        CT_ASSERT(std::is_same<l &,   TRAIT(remove_member_volatile, vl &)>{});
         CT_ASSERT(std::is_same<l,   TRAIT(remove_member_volatile, l)>{});
         CT_ASSERT(std::is_same<f,   TRAIT(remove_member_volatile, v)>{});
         CT_ASSERT(std::is_same<r,   TRAIT(remove_member_volatile, r)>{});
         CT_ASSERT(std::is_same<r,   TRAIT(remove_member_volatile, vr)>{});
-        CT_ASSERT(std::is_same<c,   TRAIT(remove_member_volatile, c)>{});
+        CT_ASSERT(std::is_same<c const,   TRAIT(remove_member_volatile, c const)>{});
         CT_ASSERT(std::is_same<c,   TRAIT(remove_member_volatile, cv)>{});
         CT_ASSERT(std::is_same<cl,  TRAIT(remove_member_volatile, cl)>{});
         CT_ASSERT(std::is_same<cl,  TRAIT(remove_member_volatile, cvl)>{});
-        CT_ASSERT(std::is_same<cr,  TRAIT(remove_member_volatile, cr)>{});
+        CT_ASSERT(std::is_same<cr &&,  TRAIT(remove_member_volatile, cr &&)>{});
         CT_ASSERT(std::is_same<cr,  TRAIT(remove_member_volatile, cvr)>{});
     }
     
@@ -61,10 +61,10 @@ int main() {
         CT_ASSERT(std::is_same<f,   TRAIT(remove_member_volatile, f)>{});
         CT_ASSERT(std::is_same<f,   TRAIT(remove_member_volatile, v)>{});
         CT_ASSERT(std::is_same<l,   TRAIT(remove_member_volatile, vl)>{});
-        CT_ASSERT(std::is_same<l,   TRAIT(remove_member_volatile, l)>{});
+        CT_ASSERT(std::is_same<l volatile,   TRAIT(remove_member_volatile, l volatile)>{});
         CT_ASSERT(std::is_same<r,   TRAIT(remove_member_volatile, r)>{});
         CT_ASSERT(std::is_same<r,   TRAIT(remove_member_volatile, vr)>{});
-        CT_ASSERT(std::is_same<c,   TRAIT(remove_member_volatile, c)>{});
+        CT_ASSERT(std::is_same<c const,   TRAIT(remove_member_volatile, c const)>{});
         CT_ASSERT(std::is_same<c,   TRAIT(remove_member_volatile, cv)>{});
         CT_ASSERT(std::is_same<cl,  TRAIT(remove_member_volatile, cl)>{});
         CT_ASSERT(std::is_same<cl,  TRAIT(remove_member_volatile, cvl)>{});

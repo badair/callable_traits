@@ -39,6 +39,9 @@ int main() {
     TEST_NOEXCEPT(int(foo::*)(int) const);
     TEST_NOEXCEPT(int(foo::*)(int, ...));
     TEST_NOEXCEPT(int(foo::*)(int, ...) volatile);
+    TEST_NOEXCEPT(int(foo::* const &)(int, ...) volatile);
+    TEST_NOEXCEPT(int(foo::* volatile &&)(int) const);
+    TEST_NOEXCEPT(int(foo::* &)(int) const);
 }
 
 #endif // #ifndef BOOST_CLBL_TRTS_ENABLE_NOEXCEPT_TYPES

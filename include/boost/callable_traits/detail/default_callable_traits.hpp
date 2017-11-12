@@ -199,6 +199,8 @@ struct default_callable_traits {
     using is_rvalue_reference_member = std::integral_constant<bool, ref_flags == rref_>;
 #endif //#ifdef BOOST_CLBL_TRTS_DISABLE_REFERENCE_QUALIFIERS
 
+    using is_function_reference = std::false_type;
+
 };
 
 }}} // namespace boost::callable_traits::detail

@@ -33,10 +33,10 @@ bool PP_CAT(test_, CALLABLE_TRAIT_UNDER_TEST)() {
     CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int(*)()>::value);
     CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int(* const foo::*)()>::value);
     CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int foo::*>::value);
-    CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* &)()>::value);
-    CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* const)()>::value);
-    CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* const &)()>::value);
-    CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* volatile)()>::value);
+    CT_ASSERT(!PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* &)()>::value);
+    CT_ASSERT(!PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* const)()>::value);
+    CT_ASSERT(!PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* const &)()>::value);
+    CT_ASSERT(!PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<int (foo::* volatile)()>::value);
 
     auto lambda = [](){};
     CT_ASSERT(PP_CAT(is_sub_failure_, CALLABLE_TRAIT_UNDER_TEST)<decltype(lambda)>::value);

@@ -96,14 +96,14 @@ int main() {
         using va_cvr = void(BOOST_CLBL_TRTS_DEFAULT_VARARGS_CC foo::*)(int&, int&&, ...) const volatile RREF;
 
         CT_ASSERT(std::is_same<va_f,    TRAIT(add_varargs, f)>{});
-        CT_ASSERT(std::is_same<va_l,    TRAIT(add_varargs, l)>{});
+        CT_ASSERT(std::is_same<va_l const,    TRAIT(add_varargs, l const)>{});
         CT_ASSERT(std::is_same<va_r,    TRAIT(add_varargs, r)>{});
         CT_ASSERT(std::is_same<va_c,    TRAIT(add_varargs, c)>{});
         CT_ASSERT(std::is_same<va_cl,   TRAIT(add_varargs, cl)>{});
         CT_ASSERT(std::is_same<va_cr,   TRAIT(add_varargs, cr)>{});
         CT_ASSERT(std::is_same<va_v,    TRAIT(add_varargs, v)>{});
         CT_ASSERT(std::is_same<va_vl,   TRAIT(add_varargs, vl)>{});
-        CT_ASSERT(std::is_same<va_vr,   TRAIT(add_varargs, vr)>{});
+        CT_ASSERT(std::is_same<va_vr &,   TRAIT(add_varargs, vr &)>{});
         CT_ASSERT(std::is_same<va_cv,   TRAIT(add_varargs, cv)>{});
         CT_ASSERT(std::is_same<va_cvl,  TRAIT(add_varargs, cvl)>{});
         CT_ASSERT(std::is_same<va_cvr,  TRAIT(add_varargs, cvr)>{});
@@ -112,7 +112,7 @@ int main() {
         CT_ASSERT(std::is_same<va_l,    TRAIT(add_varargs, va_l)>{});
         CT_ASSERT(std::is_same<va_r,    TRAIT(add_varargs, va_r)>{});
         CT_ASSERT(std::is_same<va_c,    TRAIT(add_varargs, va_c)>{});
-        CT_ASSERT(std::is_same<va_cl,   TRAIT(add_varargs, va_cl)>{});
+        CT_ASSERT(std::is_same<va_cl const volatile &&,   TRAIT(add_varargs, va_cl const volatile &&)>{});
         CT_ASSERT(std::is_same<va_cr,   TRAIT(add_varargs, va_cr)>{});
         CT_ASSERT(std::is_same<va_v,    TRAIT(add_varargs, va_v)>{});
         CT_ASSERT(std::is_same<va_vl,   TRAIT(add_varargs, va_vl)>{});

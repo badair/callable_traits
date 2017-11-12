@@ -29,8 +29,8 @@ int main() {
     struct foo;
 
     TEST_NOEXCEPT(int(foo::*)(int));
-    TEST_NOEXCEPT(int(foo::*)(int) const);
-    TEST_NOEXCEPT(int(foo::*)(int, ...));
-    TEST_NOEXCEPT(int(foo::*)(int, ...) volatile);
+    TEST_NOEXCEPT(int(foo::* const)(int) const);
+    TEST_NOEXCEPT(int(foo::* volatile &&)(int, ...));
+    TEST_NOEXCEPT(int(foo::* const &)(int, ...) volatile);
 }
 

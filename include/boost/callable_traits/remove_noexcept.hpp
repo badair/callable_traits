@@ -28,9 +28,12 @@ BOOST_CLBL_TRTS_SFINAE_MSG(remove_noexcept, cannot_remove_noexcept_from_this_typ
 template<typename T>
 using remove_noexcept_t = //see below
 //<-
-    detail::try_but_fail_if_invalid<
-        typename detail::traits<T>::remove_noexcept,
-        cannot_remove_noexcept_from_this_type>;
+
+    detail::copy_cv_ref<
+        detail::try_but_fail_if_invalid<
+            typename detail::traits<detail::shallow_decay<T>>::remove_noexcept,
+            cannot_remove_noexcept_from_this_type>,
+        T>;
 
 namespace detail {
 

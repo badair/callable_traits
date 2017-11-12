@@ -1,5 +1,6 @@
 /*
 
+@Copyright 2015 Peter Dimov (for code based on boost::copy_cv)
 @Copyright Barrett Adair 2015-2017
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)

@@ -38,11 +38,11 @@ int main() {
     CT_ASSERT(is_substitution_failure_add_noexcept<decltype(lambda)&>::value);
     CT_ASSERT(is_substitution_failure_add_noexcept<int>::value);
     CT_ASSERT(is_substitution_failure_add_noexcept<int &>::value);
-    CT_ASSERT(is_substitution_failure_add_noexcept<int (* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_noexcept<int (foo::* &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_noexcept<int (foo::* const)()>::value);
-    CT_ASSERT(is_substitution_failure_add_noexcept<int (foo::* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_noexcept<int (foo::* volatile)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_noexcept<int (* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_noexcept<int (foo::* &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_noexcept<int (foo::* const)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_noexcept<int (foo::* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_noexcept<int (foo::* volatile)()>::value);
     CT_ASSERT(is_substitution_failure_add_noexcept<void>::value);
     CT_ASSERT(is_substitution_failure_add_noexcept<void*>::value);
     CT_ASSERT(is_substitution_failure_add_noexcept<void(**)()>::value);

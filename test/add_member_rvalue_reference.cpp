@@ -45,6 +45,10 @@ int main() {
         CT_ASSERT(std::is_same<cr,   TRAIT(add_member_rvalue_reference, cr)>{});
         CT_ASSERT(std::is_same<vr,   TRAIT(add_member_rvalue_reference, vr)>{});
         CT_ASSERT(std::is_same<cvr,  TRAIT(add_member_rvalue_reference, cvr)>{});
+        CT_ASSERT(std::is_same<l &&,    TRAIT(add_member_rvalue_reference, l &&)>{});
+        CT_ASSERT(std::is_same<cl const &&,   TRAIT(add_member_rvalue_reference, cl const &&)>{});
+        CT_ASSERT(std::is_same<vl volatile &,   TRAIT(add_member_rvalue_reference, vl volatile &)>{});
+
     }
 
     {

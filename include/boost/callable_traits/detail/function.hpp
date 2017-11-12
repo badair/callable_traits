@@ -185,6 +185,8 @@ struct function<T&> : std::conditional<function<T>::value,
 
     template<std::size_t Index, typename... NewArgs>
     using replace_args = typename base::template replace_args<Index, NewArgs...>&;
+
+    using is_function_reference = std::integral_constant<bool, function<T>::value>;
 };
 
 }}} // namespace boost::callable_traits::detail

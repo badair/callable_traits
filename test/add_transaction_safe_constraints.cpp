@@ -38,11 +38,11 @@ int main() {
     CT_ASSERT(is_substitution_failure_add_tx_safe<decltype(lambda)&>::value);
     CT_ASSERT(is_substitution_failure_add_tx_safe<int>::value);
     CT_ASSERT(is_substitution_failure_add_tx_safe<int &>::value);
-    CT_ASSERT(is_substitution_failure_add_tx_safe<int (* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_tx_safe<int (foo::* &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_tx_safe<int (foo::* const)()>::value);
-    CT_ASSERT(is_substitution_failure_add_tx_safe<int (foo::* const &)()>::value);
-    CT_ASSERT(is_substitution_failure_add_tx_safe<int (foo::* volatile)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_tx_safe<int (* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_tx_safe<int (foo::* &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_tx_safe<int (foo::* const)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_tx_safe<int (foo::* const &)()>::value);
+    CT_ASSERT(!is_substitution_failure_add_tx_safe<int (foo::* volatile)()>::value);
     CT_ASSERT(is_substitution_failure_add_tx_safe<void>::value);
     CT_ASSERT(is_substitution_failure_add_tx_safe<void*>::value);
     CT_ASSERT(is_substitution_failure_add_tx_safe<void(**)()>::value);

@@ -25,9 +25,11 @@ namespace boost { namespace callable_traits {
 template<typename T>
 using remove_member_cv_t = //see below
 //<-
-    detail::try_but_fail_if_invalid<
-        typename detail::traits<T>::remove_member_cv,
-        member_qualifiers_are_illegal_for_this_type>;
+    detail::copy_cv_ref<
+        detail::try_but_fail_if_invalid<
+            typename detail::traits<detail::shallow_decay_except_func_ref<T>>::remove_member_cv,
+            member_qualifiers_are_illegal_for_this_type>,
+        T>;
 
 namespace detail {
 

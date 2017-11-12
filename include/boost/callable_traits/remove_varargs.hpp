@@ -25,9 +25,11 @@ namespace boost { namespace callable_traits {
 template<typename T>
 using remove_varargs_t = //see below
 //<-
-    detail::try_but_fail_if_invalid<
-        typename detail::traits<T>::remove_varargs,
-        varargs_are_illegal_for_this_type>;
+    detail::copy_cv_ref<
+        detail::try_but_fail_if_invalid<
+            typename detail::traits<detail::shallow_decay<T>>::remove_varargs,
+            varargs_are_illegal_for_this_type>,
+        T>;
 
 namespace detail {
 

@@ -44,9 +44,11 @@ struct add_transaction_safe {
 template<typename T>
 using add_transaction_safe_t = //see below
 //<-
-    detail::try_but_fail_if_invalid<
-        typename detail::traits<T>::add_transaction_safe,
-        cannot_add_transaction_safe_to_this_type>;
+    detail::copy_cv_ref<
+        detail::try_but_fail_if_invalid<
+            typename detail::traits<detail::shallow_decay<T>>::add_transaction_safe,
+            cannot_add_transaction_safe_to_this_type>,
+        T>;
 
 namespace detail {
 

@@ -35,10 +35,10 @@ int main() {
 
     struct foo;
 
-    TEST_TRANSACTION_SAFE(int(foo::*)(int));
+    TEST_TRANSACTION_SAFE(int(foo::* &)(int));
     TEST_TRANSACTION_SAFE(int(foo::*)(int) const);
-    TEST_TRANSACTION_SAFE(int(foo::*)(int, ...));
-    TEST_TRANSACTION_SAFE(int(foo::*)(int, ...) volatile);
+    TEST_TRANSACTION_SAFE(int(foo::* const &&)(int, ...));
+    TEST_TRANSACTION_SAFE(int(foo::* volatile)(int, ...) volatile);
 }
 
 #endif

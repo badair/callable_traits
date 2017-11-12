@@ -45,6 +45,9 @@ int main() {
         CT_ASSERT(!std::is_same<cr,   TRAIT(add_member_lvalue_reference, cr)>{});
         CT_ASSERT(!std::is_same<vr,   TRAIT(add_member_lvalue_reference, vr)>{});
         CT_ASSERT(!std::is_same<cvr,  TRAIT(add_member_lvalue_reference, cvr)>{});
+        CT_ASSERT(std::is_same<cl &,    TRAIT(add_member_lvalue_reference, c &)>{});
+        CT_ASSERT(std::is_same<vl &&,    TRAIT(add_member_lvalue_reference, v &&)>{});
+        CT_ASSERT(std::is_same<vl const volatile,    TRAIT(add_member_lvalue_reference, v const volatile)>{});
     } 
     
     {
@@ -74,6 +77,9 @@ int main() {
         CT_ASSERT(!std::is_same<cr,   TRAIT(add_member_lvalue_reference, cr)>{});
         CT_ASSERT(!std::is_same<vr,   TRAIT(add_member_lvalue_reference, vr)>{});
         CT_ASSERT(!std::is_same<cvr,  TRAIT(add_member_lvalue_reference, cvr)>{});
+        CT_ASSERT(!std::is_same<r const,    TRAIT(add_member_lvalue_reference, r const)>{});
+        CT_ASSERT(!std::is_same<cr volatile &,   TRAIT(add_member_lvalue_reference, cr volatile &)>{});
+        CT_ASSERT(!std::is_same<vr &&,   TRAIT(add_member_lvalue_reference, vr &&)>{});
     }
     
     {
